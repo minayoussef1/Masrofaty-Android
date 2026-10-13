@@ -8,7 +8,7 @@
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="mobile-web-app-capable" content="yes">
-<title>Masrofaty</title>
+<title>مصروفاتي</title>
 <style>
 :root{--bg1:#0b1226;--bg2:#13234a;--glass:rgba(255,255,255,.07);--line:rgba(255,255,255,.13);--text:#eef2ff;--mut:#9aa8cc;--page:radial-gradient(120% 70% at 80% 0%,#27407f 0%,transparent 60%),radial-gradient(90% 60% at 0% 100%,#3a2a7a 0%,transparent 55%),linear-gradient(180deg,#13234a,#0b1226);--nav:rgba(15,25,56,.82);--hole:#14214a;--blur:18px;--inp:rgba(255,255,255,.06);--on:#fff;--gsheen:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 50%,rgba(255,255,255,.07));--gshadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -1px 0 rgba(255,255,255,.06),0 10px 32px rgba(0,0,0,.28);--bf:blur(18px) saturate(1.7);--acc:#4f7cff;--acc2:#7c5cff;--inc:#22c55e;--exp:#ef4444;--loan:#8b5cf6;--rep:#06b6d4}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -379,6 +379,7 @@ html.lite .nav{transition:transform .85s cubic-bezier(.25,.8,.25,1)!important}
 .nav .fab{background:var(--acc)!important;box-shadow:0 6px 16px rgba(var(--accrgb),.32)!important;border:4px solid var(--nav-solid,#fff)}
 :root[data-theme="dark"] .nav .fab{--nav-solid:#1c1c1f}
 :root[data-theme="light"] .nav .fab{--nav-solid:#ffffff}
+.ins{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}.ins:last-child{border:0}.ins small{color:var(--mut);font-size:12px}.ins b{font-weight:700}
 </style>
 </head>
 <body>
@@ -1050,6 +1051,19 @@ function log(){
   $('#q').oninput=e=>{q=e.target.value;$('#loglist').innerHTML=logList()};
 }
 
+
+function insightCard(L){
+  const ex=L.filter(t=>t.type==='expense');
+  if(!ex.length)return '';
+  const g={};
+  ex.forEach(t=>{const k=(t.note&&t.note.trim())?t.note.trim():t.cat;const e=g[k]||(g[k]={n:0,v:0,cat:t.cat});e.n++;e.v+=t.amt});
+  const top=Object.entries(g).sort((a,b)=>b[1].v-a[1].v).slice(0,5);
+  const cats=Object.entries(ex.reduce((o,t)=>{o[t.cat]=(o[t.cat]||0)+t.amt;return o},{})).sort((a,b)=>b[1]-a[1]);
+  return `<div class="g"><div class="sec" style="margin-top:0">ملخص مصروفاتك</div>
+  ${cats.slice(0,3).map(([c,v])=>`<div class="ins"><span>${c}</span><b>${f(v)} ${CUR()}</b></div>`).join('')}
+  <div class="sec">أكتر حاجات بتصرف عليها</div>
+  ${top.map(([k,e])=>`<div class="ins"><span>${U(k)}<small> · ${e.n} مرة</small></span><b>${f(e.v)} ${CUR()}</b></div>`).join('')}</div>`;
+}
 let rmode='m';
 function rangeOf(){
   if(rmode==='y'){const y=new Date().getFullYear()+off,s=new Date(y,0,1),e=new Date(y,11,31);return{s,e,si:iso(s),ei:iso(e),label:String(y)}}
@@ -1083,6 +1097,7 @@ function rep(){
   <div class="g"><div class="sec" style="margin-top:0">${bt}</div>${dailyBars(R,L)}</div>
   <div class="grid2"><div class="g st" data-ic="inc" data-glyph="↑"><small>إجمالي الدخل</small><b class="inc">${f(s.income)}</b></div><div class="g st" data-ic="exp" data-glyph="↓"><small>إجمالي المصروف</small><b class="exp">${f(s.expense)}</b></div></div>
   <div class="grid2"><div class="g st" data-ic="loan" data-glyph="🤝"><small>صافي السلف</small><b class="loan">${f(s.loan-s.repay)}</b></div><div class="g st" data-ic="avail" data-glyph="💵"><small>المتبقي</small><b>${f(s.bal)}</b></div></div>
+  ${insightCard(L)}
   ${trendCard()}`;
 }
 
@@ -1091,17 +1106,27 @@ function rep(){
 const DEV={appName:'مصروفاتي',version:'1.0',name:'Mina Maximos',role:'شركة MaxRoid',about:'',email:'mena.yoosef2025@gmail.com',whatsapp:'201558688687',telegram:'Mina_Maximos',youtube:'https://m.youtube.com/@MinaMaximos/videos',website:''};
 function openLink(k){
   const v=(DEV[k]||'').trim();if(!v)return;
-  let u=v;
-  if(k==='email')u='mailto:'+v;
-  else if(k==='telegram')u='https://t.me/'+v.replace(/^@/,'').replace(/^https?:\/\/t\.me\//,'');
-  else if(k==='whatsapp')u='https://api.whatsapp.com/send?phone='+v.replace(/\D/g,'');
-  // Inside the Android app (Capacitor + @capacitor/app-launcher): hand the link to the installed app (Telegram, YouTube, WhatsApp, Mail).
   const C=window.Capacitor;
+  // Inside the Android app built with Capacitor: hand the link to the installed app.
   if(C&&C.isNativePlatform&&C.isNativePlatform()&&C.Plugins&&C.Plugins.AppLauncher){
+    const u=k==='email'?'mailto:'+v:k==='telegram'?'https://t.me/'+v.replace(/^@/,''):k==='whatsapp'?'https://api.whatsapp.com/send?phone='+v.replace(/\D/g,''):v;
     C.Plugins.AppLauncher.openUrl({url:u}).catch(()=>window.open(u,'_blank','noopener'));
     return;
   }
-  window.open(u,'_blank','noopener');
+  // App deep link first (opens the installed app directly inside the Android WebView).
+  // If the app is not installed or nothing happens, fall back to the web link after a short delay.
+  let deep='',web='';
+  if(k==='email'){web=deep='mailto:'+v}
+  else if(k==='telegram'){const u=v.replace(/^@/,'').replace(/^https?:\/\/t\.me\//,'');deep='tg://resolve?domain='+encodeURIComponent(u);web='https://t.me/'+u}
+  else if(k==='whatsapp'){const n=v.replace(/\D/g,'');deep='whatsapp://send?phone='+n;web='https://api.whatsapp.com/send?phone='+n}
+  else if(k==='youtube'){web=v;deep=v.replace(/^https?:\/\//,'vnd.youtube://')}
+  else{web=v}
+  if(!deep){window.open(web,'_blank','noopener');return}
+  let handled=false;
+  const onHide=()=>{if(document.hidden)handled=true};
+  document.addEventListener('visibilitychange',onHide,{once:true});
+  setTimeout(()=>{document.removeEventListener('visibilitychange',onHide);if(!handled&&!document.hidden)window.open(web,'_blank','noopener')},1300);
+  try{window.location.href=deep}catch(e){window.open(web,'_blank','noopener')}
 }
 const SIC={person:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',devices:'<rect x="3" y="4" width="13" height="10" rx="2"/><path d="M8 20h4M10 14v6"/><rect x="17" y="8" width="4" height="12" rx="1"/>',cloud:'<path d="M7 18a4.5 4.5 0 0 1-.5-9A6 6 0 0 1 18 10.5a3.5 3.5 0 0 1 .5 7.5z"/>',bell:'<path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>',palette:'<circle cx="12" cy="12" r="9"/><circle cx="8" cy="10" r="1.2"/><circle cx="12" cy="7.5" r="1.2"/><circle cx="16" cy="10" r="1.2"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/>',goal:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',send:'<path d="M21 4L3 11l7 2 2 7 9-16z"/><path d="M10 13l5-5"/>',play:'<rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/>',chat:'<path d="M4 5h16v11H9l-5 4z"/>',wallet:'<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 15h2"/>',lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'};
 const sIco=k=>`<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${SIC[k]}</svg>`;
@@ -1157,8 +1182,9 @@ function walScr(){
   $('#s-wal').innerHTML=`<h2>المحافظ</h2>
   <div class="g wtot"><small>الإجمالي</small><b>${f(tot)} ${CUR()}</b></div>
   <div class="sec">محافظك</div>${cards}
-  <div class="g"><div class="sec" style="margin-top:0">محفظة جديدة</div><div class="row" style="border:0;padding:0"><input id="wal-name" placeholder="مثلاً: فودافون كاش"><button class="btn" style="width:auto;margin:0;padding:12px 16px" onclick="walAdd()">إضافة</button></div></div>`;
+  <div class="g"><div class="sec" style="margin-top:0">محفظة جديدة</div><div class="tabs wide" style="margin:0 0 10px"><button class="chip" onclick="walQuick('InstaPay','🏦')">InstaPay</button><button class="chip" onclick="walQuick('Vodafone Cash','📱')">Vodafone Cash</button><button class="chip" onclick="walQuick('Cash','💵')">Cash</button></div><div class="row" style="border:0;padding:0"><input id="wal-name" placeholder="أو اكتب اسم محفظة"><button class="btn" style="width:auto;margin:0;padding:12px 16px" onclick="walAdd()">إضافة</button></div></div>`;
 }
+function walQuick(n,i){if(S.wallets.some(w=>w.name===n)){toast('المحفظة دي موجودة');return}S.wallets.push({id:'w'+Date.now(),name:n,ico:i,open:0});save();render()}
 function walAdd(){const n=$('#wal-name').value.trim();if(!n){toast('اكتب اسم المحفظة');return}S.wallets.push({id:'w'+Date.now(),name:n,ico:'👛',open:0});save();render()}
 const R={home,add:addScr,log,rep,set:setScr,plan:planScr,wal:walScr};let cur='home';
 function render(){R[cur]();if(cur==='home'){const e=$('#heroN');if(e)countUp(e,+e.dataset.v)}}
@@ -1215,6 +1241,48 @@ function driveOnboardSkip(){S.drive.skip=true;save(false);$('#gP').style.display
     ticking=false;
   }
   window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
+})();
+</script>
+<script>
+/* Native behaviour (only runs inside the Capacitor Android app; plain browser ignores it):
+   - Android back button closes open sheets first, then goes to Home, then exits the app.
+   - Status bar matches the theme. */
+(function(){
+  const C=window.Capacitor;
+  if(!C||!C.isNativePlatform||!C.isNativePlatform()||!C.Plugins)return;
+  const P=C.Plugins;
+  if(P.App){
+    P.App.addListener('backButton',()=>{
+      if($('#sheet').classList.contains('on')){closeSheet();return}
+      if(cur!=='home'){go('home');return}
+      P.App.exitApp();
+    });
+  }
+  if(P.StatusBar){
+    const dark=()=>document.documentElement.dataset.theme==='dark'||(document.documentElement.dataset.theme==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+    const apply=()=>{try{P.StatusBar.setStyle({style:dark()?'DARK':'LIGHT'});P.StatusBar.setBackgroundColor({color:dark()?'#000000':'#f2f5fb'})}catch(e){}};
+    apply();
+    new MutationObserver(apply).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  }
+})();
+</script>
+<script>
+/* Swipe from the left or right screen edge = Back (closes sheet, then goes Home). */
+(function(){
+  let sx=0,sy=0,edge=null,t0=0;
+  const W=()=>window.innerWidth;
+  document.addEventListener('touchstart',e=>{
+    const t=e.touches[0];sx=t.clientX;sy=t.clientY;t0=Date.now();
+    edge=(sx<22)?'L':(sx>W()-22)?'R':null;
+  },{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(!edge)return;
+    const t=e.changedTouches[0];const dx=t.clientX-sx,dy=t.clientY-sy;
+    if(Math.abs(dy)>60||Math.abs(dx)<90||Date.now()-t0>700){edge=null;return}
+    edge=null;
+    if($('#sheet').classList.contains('on')){closeSheet();return}
+    if(cur!=='home')go('home');
+  },{passive:true});
 })();
 </script>
 </body>
