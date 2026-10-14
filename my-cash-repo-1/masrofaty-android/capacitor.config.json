@@ -1,0 +1,14 @@
+{
+  "appId": "com.maxroid.mycashtracker",
+  "appName": "My Cash: Tracker",
+  "webDir": "www",
+  "plugins": {
+    "GoogleAuth": {
+      "scopes": [
+        "https://www.googleapis.com/auth/drive.appdata"
+      ],
+      "serverClientId": "278179619078-b645v86r4cpo3ubgdpet6c4j1u2v73q8.apps.googleusercontent.com",
+      "forceCodeForRefreshToken": false
+    }
+  }
+}
