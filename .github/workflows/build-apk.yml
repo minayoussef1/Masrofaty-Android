@@ -66,16 +66,20 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon --stacktrace
 
+      - name: Rename APK
+        working-directory: masrofaty-android/android/app/build/outputs/apk/debug
+        run: cp app-debug.apk my-cash-tracker.apk
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: masrofaty-apk
-          path: masrofaty-android/android/app/build/outputs/apk/debug/app-debug.apk
+          name: my-cash-tracker-apk
+          path: masrofaty-android/android/app/build/outputs/apk/debug/my-cash-tracker.apk
 
       - name: Publish release with the APK
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
-          name: Masrofaty build ${{ github.run_number }}
+          name: "My Cash: Tracker build ${{ github.run_number }}"
           body: APK built automatically from the latest commit.
-          files: masrofaty-android/android/app/build/outputs/apk/debug/app-debug.apk
+          files: masrofaty-android/android/app/build/outputs/apk/debug/my-cash-tracker.apk
