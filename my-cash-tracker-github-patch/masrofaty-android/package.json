@@ -1,0 +1,19 @@
+{
+  "name": "my-cash-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "My Cash: Tracker - personal income and expense tracking app",
+  "dependencies": {
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/app": "^7.0.1",
+    "@capacitor/app-launcher": "^7.0.1",
+    "@capacitor/filesystem": "^7.1.4",
+    "@capacitor/share": "^7.0.1",
+    "@capacitor/status-bar": "^7.0.1",
+    "@capacitor/local-notifications": "^7.0.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3"
+  }
+}
