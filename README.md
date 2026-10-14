@@ -1,1 +1,0 @@
-# My Cash: Tracker-Android
