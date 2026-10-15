@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<script>try{var __d=JSON.parse(localStorage.getItem("masrofaty")||"null");if(__d&&__d.drive&&(__d.drive.on||!__d.drive.skip)){__d.drive.on=false;__d.drive.skip=true;localStorage.setItem("masrofaty",JSON.stringify(__d))}}catch(e){}</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b1226">
@@ -390,16 +392,16 @@ html.lite .nav{transition:transform .85s cubic-bezier(.25,.8,.25,1)!important}
 .hero-hi .hg small{color:var(--mut);font-size:13px}
 .bell{width:42px;height:42px;border-radius:50%;border:0;background:var(--glass);box-shadow:var(--shadow-card);font-size:18px;flex:none}
 .hdate{margin:0 4px 12px}.hdate small{color:var(--mut);font-size:13px}
-.bal{background:linear-gradient(135deg,#5b8cff,#8f6bff)!important;border-radius:26px!important;padding:20px 20px 18px!important;position:relative;overflow:hidden}
+.bal{background:linear-gradient(135deg,var(--acc),var(--acc2))!important;border-radius:26px!important;padding:20px 20px 18px!important;position:relative;overflow:hidden}
 .bal::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-38px;height:90px;background:radial-gradient(60% 100% at 50% 100%,rgba(255,255,255,.22),transparent 70%);pointer-events:none}
 .qa{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 16px}
 .qa button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text);font:inherit;font-size:13px;font-weight:600;padding:0}
 .qa i{font-style:normal;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:var(--glass);box-shadow:var(--shadow-card);color:var(--acc)}
 .qa button:first-child i{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}
 .grid3 .st[data-ic="inc"],.grid3 .st[data-ic="exp"],.grid3 .st[data-ic="loan"]{border-radius:22px}
-.grid3 .st[data-ic="inc"]{background:linear-gradient(160deg,#e9fdf4,#f7fffb)}
-.grid3 .st[data-ic="exp"]{background:linear-gradient(160deg,#fff0f3,#fff8fa)}
-.grid3 .st[data-ic="loan"]{background:linear-gradient(160deg,#f3eeff,#fbf9ff)}
+.grid3 .st[data-ic="inc"]{background:linear-gradient(160deg,rgba(var(--accrgb),.14),rgba(var(--accrgb),.04))}
+.grid3 .st[data-ic="exp"]{background:linear-gradient(160deg,rgba(var(--accrgb),.14),rgba(var(--accrgb),.04))}
+.grid3 .st[data-ic="loan"]{background:linear-gradient(160deg,rgba(var(--accrgb),.14),rgba(var(--accrgb),.04))}
 :root[data-theme="dark"] .grid3 .st[data-ic]{background:var(--glass)!important}
 .qa2{grid-template-columns:repeat(2,minmax(0,140px));justify-content:center;column-gap:36px}
 
@@ -417,6 +419,7 @@ html.lite .nav{transition:transform .85s cubic-bezier(.25,.8,.25,1)!important}
 .sv-row:active{transform:scale(.99)}
 
 
+.thumb{width:42px;height:42px;border-radius:12px;object-fit:cover;display:block;background:var(--line)}
 </style>
 </head>
 <body>
@@ -553,7 +556,32 @@ const EN={
 'ملاحظات (اختياري)':'Notes (optional)',
 'نوع آخر (سلفة، دين، تحويل)':'Other type (loan, debt, transfer)',
 'نوع آخر':'Other type',
-'كاش':'Cash','بنك':'Bank'
+'كاش':'Cash','بنك':'Bank',
+'إضافة الهدف':'Add goal',
+'هدف جديد':'New goal',
+'تحويل بين المحافظ':'Transfer between wallets',
+'إجمالي المحافظ':'Total wallets',
+'اسم الهدف (مثال: عربية، شقة، عمرة)':'Goal name (e.g. car, flat, trip)',
+'الرصيد الفعلي':'Actual balance',
+'سجّل الدفع':'Log payment',
+'لاحقاً':'Later',
+'افتح الدين':'Open debt',
+'أكتر حاجات بتصرف عليها':'Your top spending',
+'ملخص مصروفاتك':'Spending summary',
+'الادخار':'Savings',
+'🎯 الادخار':'🎯 Savings',
+'نظرة سريعة':'Quick overview',
+'نتمنى لك يوماً موفقاً':'Wishing you a great day',
+'صباح الخير،':'Good morning,',
+
+
+
+'الأحد':'Sunday',
+'· 1 مرة':'· 1 time','· 2 مرة':'· 2 times','· 3 مرة':'· 3 times','· 4 مرة':'· 4 times','· 5 مرة':'· 5 times',
+'العشور والزكاة':'Tithe & Zakat','من الدخل ده، تحب نخصم العشور':'From this income, deduct tithe','خصم العشور':'Deduct tithe','خصم الزكاة':'Deduct zakat','تم الخصم':'Deducted','تعديل الهدف':'Edit goal','حفظ التعديل':'Save changes','اسم الهدف':'Goal name','عشور':'Tithe','زكاة':'Zakat','تم تعديل الهدف':'Goal updated',
+'العشور والزكاة':'Tithe & Zakat','الدخل الشهر ده':'Income this month','المستحق':'Due','اتخصم':'Deducted','الباقي':'Remaining','خصم من مرتب':'Deduct from a salary','خصم من مبلغ تحدده':'Deduct from an amount you set','المبلغ اللي هيتحسب عليه':'Amount to calculate on','اتخصم الشهر ده':'Deducted this month','مفيش دخل مسجّل الشهر ده':'No income recorded this month','لسه ماتخصمش حاجة الشهر ده':'Nothing deducted this month','زكاة':'Zakat','عشور':'Tithe','خصم':'Deduct',
+'النهارده':'Today','مفيش عمليات النهارده':'No transactions today','الإجمالي النهارده':'Total today',
+'صورة الإيصال (اختياري)':'Receipt photo (optional)','اضغط تصور أو تختار صورة':'Tap to take or choose a photo','اتصورت ✓':'Photo added ✓','مسح':'Remove','الإيصال':'Receipt','الصورة مش موجودة':'Photo not found','الصورة مش مقروءة':'Photo could not be read'
 };
 const isRTL=()=>S.lang==='ar';
 const CUR=()=>S.cur||curOf();
@@ -689,8 +717,12 @@ function planCards(p,L,s){
 function openBill(id){const b=S.bills.find(x=>x.id===id);if(!b)return;
   $('#sheet').innerHTML=`<div class="back" onclick="closeSheet()"></div><div class="panel"><div class="grab"></div><div class="avatar">🧾</div><div class="pname">${U(b.name)}</div><h3>تدفع الفاتورة دلوقتي؟</h3><p>${f(b.amt)} ${CUR()}</p><button class="btn" onclick="payBill('${id}')">✅ ادفع دلوقتي</button><button class="btn s" onclick="closeSheet()">إلغاء</button></div>`;$('#sheet').classList.add('on')}
 function payBill(id){const b=S.bills.find(x=>x.id===id);if(!b)return;S.tx.push({id:Date.now()+'',type:'expense',cat:'فواتير',amt:b.amt,note:b.name,bill:b.id,date:iso(new Date()),t:Date.now()});save();closeSheet();go('home');toast('تم تسجيل الدفع');budgetCheck('expense','فواتير')}
+
+function goalEdit(id){const g=S.goals.find(x=>x.id===id);if(!g)return;const n=($('#ge-name').value||'').trim(),a=parseFloat($('#ge-tgt').value);
+  if(!n||!(a>0)){toast('اكتب الاسم والمبلغ صح');return}
+  g.name=n;g.target=a;save();closeSheet();planScr&&typeof planScr==='function'&&planScr();go(cur);toast('تم تعديل الهدف ✅')}
 function openGoal(id){const g=S.goals.find(x=>x.id===id);if(!g)return;const sv=goalSaved(g);
-  $('#sheet').innerHTML=`<div class="back" onclick="closeSheet()"></div><div class="panel"><div class="grab"></div><div class="avatar">🎯</div><div class="pname">${U(g.name)}</div><p>${f(sv)} / ${f(g.target)} ${CUR()} • المتبقي ${f(Math.max(g.target-sv,0))}</p><input id="g-amt" type="number" inputmode="decimal" placeholder="المبلغ" style="margin-top:6px"><button class="btn" onclick="goalMove('${id}',1)">➕ ركّن المبلغ</button><button class="btn s" onclick="goalMove('${id}',-1)">➖ اسحب من الهدف</button></div>`;$('#sheet').classList.add('on')}
+  $('#sheet').innerHTML=`<div class="back" onclick="closeSheet()"></div><div class="panel"><div class="grab"></div><div class="avatar">🎯</div><div class="pname">${U(g.name)}</div><p>${f(sv)} / ${f(g.target)} ${CUR()} • المتبقي ${f(Math.max(g.target-sv,0))}</p><input id="g-amt" type="number" inputmode="decimal" placeholder="المبلغ" style="margin-top:6px"><button class="btn" onclick="goalMove('${id}',1)">➕ ركّن المبلغ</button><button class="btn s" onclick="goalMove('${id}',-1)">➖ اسحب من الهدف</button><div class="sec">تعديل الهدف</div><input id="ge-name" value="${g.name.replace(/"/g,'&quot;')}" placeholder="اسم الهدف"><input id="ge-tgt" type="number" inputmode="decimal" value="${g.target}" style="margin-top:6px"><button class="btn s" onclick="goalEdit('${id}')">حفظ التعديل</button></div>`;$('#sheet').classList.add('on')}
 function goalMove(id,k){const g=S.goals.find(x=>x.id===id),sv=goalSaved(g),amt=parseFloat($('#g-amt').value);
   if(!(amt>0)||(k<0&&amt>sv+0.001)){alert(tr('المبلغ مش مظبوط'));return}
   S.tx.push({id:Date.now()+'',type:k>0?'save':'unsave',cat:'',amt,note:g.name,goal:g.id,date:iso(new Date()),t:Date.now()});save();closeSheet();go('home');
@@ -881,6 +913,7 @@ const GCLIENT='278179619078-b645v86r4cpo3ubgdpet6c4j1u2v73q8.apps.googleusercont
 const gClient=()=>(GCLIENT&&!GCLIENT.startsWith('REPLACE')&&GCLIENT)||S.gid||'';/* ضع هنا Google Client ID لو عايز تثبّته جوه الكود، أو الصقه من الإعدادات */
 function restoreData(x){
   try{localStorage.setItem('masrofaty_prev',JSON.stringify(S))}catch(e){}
+  const _ph=x.photos||{};delete x.photos;Object.entries(_ph).forEach(([k,v])=>photoPut(k,v).catch(()=>{}));
   const keep={gid:S.gid,drive:S.drive};Object.assign(S,x,keep);save();applyTheme();applyLang();buildNav();recRun();toast('تم الاسترجاع');go('home')}
 
 /* Save a file on any platform. Inside the Android app: write to app cache, then open the system share sheet (Save to Files / Drive / WhatsApp...). No storage permission needed. In a browser: normal download. */
@@ -901,8 +934,9 @@ async function saveFile(name,mime,text){
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:mime}));a.download=name;document.body.appendChild(a);a.click();a.remove();
   }catch(e){}
 }
-function exportJSON(){
-  const t=JSON.stringify(Object.assign({},S,{gid:undefined})),name='my-cash-backup-'+iso(new Date())+'.json';
+async function exportJSON(){
+  const photos={};for(const x of S.tx){if(x.photo){const d=await photoGet(x.photo);if(d)photos[x.photo]=d}}
+  const t=JSON.stringify(Object.assign({},S,{gid:undefined},Object.keys(photos).length?{photos}:{})),name='my-cash-backup-'+iso(new Date())+'.json';
   saveFile(name,'application/json',t);
   const b=$('#bk');if(b)b.value=t;toast('تم تجهيز النسخة')}
 function importFile(inp){
@@ -949,15 +983,11 @@ function driveAuto(){const D=S.drive;if(!D.on||!navigator.onLine||Date.now()-D.l
 function driveBanner(){return (S.drive.on&&S.drive.need)?`<div class="warn tap" onclick="driveBackup(true)">☁️ اضغط لإكمال النسخ الاحتياطي على Google Drive</div>`:''}
 function saveCid(){S.gid=$('#g-cid').value.trim();save();setScr()}
 function backupCard(){
-  const id=gClient(),D=S.drive,last=D.last?new Date(D.last).toLocaleString(isRTL()?'ar-EG':'en-US'):'';
   return `<div class="g"><div class="sec" style="margin-top:0">☁️ النسخ الاحتياطي</div>
   <button class="btn s" style="margin-top:0" onclick="exportJSON()">💾 حفظ نسخة في التليفون</button>
-  <div class="btn s" style="text-align:center;cursor:pointer" onclick="$('#fpick').click()">📂 استرجاع من ملف</div><input id="fpick" type="file" accept=".json,application/json" style="display:none" onchange="importFile(this)">
-  <div class="sec">Google Drive</div>
-  ${id?`<div class="tabs" style="margin-bottom:6px"><button class="chip ${D.on?'on':''}" onclick="driveToggle()">${D.on?'النسخ التلقائي شغّال ✓':'تفعيل النسخ التلقائي'}</button></div>
-  <button class="btn s" style="margin-top:0" onclick="driveBackup(true)">☁️ انسخ دلوقتي</button><button class="btn s" onclick="driveRestore()">⬇️ استرجاع من Drive</button>
-  <div class="sec" style="text-align:center">${last?'آخر نسخة: '+last:'لسه ماتعملتش نسخة'}</div>`
-  :`<p style="color:var(--mut);font-size:13px;margin:0 4px 8px">لتفعيل Google Drive ألصق الـ Client ID الخاص بالتطبيق</p><input id="g-cid" placeholder="Google Client ID"><button class="btn s" onclick="saveCid()">حفظ الـ ID</button>`}</div>`}
+  <div class="btn s" style="text-align:center;cursor:pointer" onclick="$('#fpick').click()">📂 استرجاع من ملف</div><input id="fpick" type="file" accept=".json,application/json" style="display:none" onchange="importFile(this)"></div>`;
+}
+
 function getTip(s,p,L,left,tithe){
   const d=new Date().getDate();
   if(!L.length)return['👋','ابدأ بتسجيل دخلك وأول مصروف عشان نبدأ نحسبلك صح.'];
@@ -1020,14 +1050,14 @@ function row(t,d){
   const ic={loan:'🤝',repay:'↩️',borrow:'📥',payback:'📤',save:'🎯',unsave:'🎯',transfer:'🔁'}[t.type]||(ICON[t.cat]||'⋯');
   const title=t.note?U(t.note):(['loan','repay','borrow','payback','transfer'].includes(t.type)?lab:t.cat);
   const bg={exp:'rgba(239,68,68,.2)',inc:'rgba(34,197,94,.2)',loan:'rgba(139,92,246,.25)',rep:'rgba(6,182,212,.2)',dbt:'rgba(245,158,11,.25)'}[cl];
-  return `<div class="row${d?' tap':''}"${d?` onclick="openEdit('${t.id}')"`:''}><div class="ic" style="background:${bg}">${ic}</div><div class="m"><b>${title}</b><small>${lab}${t.type==='expense'||t.type==='income'?' • '+t.cat:''} • ${t.date}${wtxt(t)}${t.type==='loan'?' • '+(remaining(t)>0.001?'لسه ماترجعتش':'✓ اترجّعت'):t.type==='borrow'?' • '+(remaining(t)>0.001?'لسه ماتسددش':'✓ اتسدّدت'):''}</small></div><div class="a ${cl}">${sign}${f(t.amt)}</div>${d?`<button class="del" onclick="event.stopPropagation();del('${t.id}')">🗑</button>`:''}</div>`;
+  return `<div class="row${d?' tap':''}"${d?` onclick="openEdit('${t.id}')"`:''}><div class="ic" style="background:${bg}">${t.photo?`<img class="thumb" data-ph="${t.photo}" alt="" onclick="event.stopPropagation();viewPhoto('${t.photo}')">`:ic}</div><div class="m"><b>${title}</b><small>${lab}${t.type==='expense'||t.type==='income'?' • '+t.cat:''} • ${t.date}${wtxt(t)}${t.type==='loan'?' • '+(remaining(t)>0.001?'لسه ماترجعتش':'✓ اترجّعت'):t.type==='borrow'?' • '+(remaining(t)>0.001?'لسه ماتسددش':'✓ اتسدّدت'):''}</small></div><div class="a ${cl}">${sign}${f(t.amt)}</div>${d?`<button class="del" onclick="event.stopPropagation();del('${t.id}')">🗑</button>`:''}</div>`;
 }
-function del(id){if(confirm(tr('تمسح العملية دي؟'))){S.tx=S.tx.filter(t=>t.id!==id);save();render()}}
+function del(id){if(confirm(tr('تمسح العملية دي؟'))){{const _d=S.tx.find(t=>t.id===id);if(_d&&_d.photo)photoDel(_d.photo)}S.tx=S.tx.filter(t=>t.id!==id);save();render()}}
 
 function home(){
   const p=period(0),L=inP(p),s=sums(L),n=new Date();
   const left=Math.max(Math.round((p.e-new Date(n.getFullYear(),n.getMonth(),n.getDate()))/864e5)+1,1);
-  const tithe=s.income*S.tithe/100;const OL=openLoans(),outst=OL.reduce((a,l)=>a+l.rem,0),DB=openDebts(),debtOut=DB.reduce((a,l)=>a+l.rem,0),bd=S.bills.filter(b=>!L.some(t=>t.bill===b.id)),billsDue=bd.reduce((a,b)=>a+b.amt,0),avail=s.bal-debtOut-billsDue,hero=S.wallets.length?walTotal():avail,pct=s.income>0?Math.round(s.expense/s.income*100):0,pcol=pct<60?'#22c55e':pct<85?'#f59e0b':'#ef4444';
+  const tithe=Math.max(0,s.income*S.tithe/100-L.filter(t=>t.type==='expense'&&(t.cat==='عشور'||t.cat==='زكاة')).reduce((a,t)=>a+t.amt,0));const OL=openLoans(),outst=OL.reduce((a,l)=>a+l.rem,0),DB=openDebts(),debtOut=DB.reduce((a,l)=>a+l.rem,0),bd=S.bills.filter(b=>!L.some(t=>t.bill===b.id)),billsDue=bd.reduce((a,b)=>a+b.amt,0),avail=s.bal-debtOut-billsDue,hero=S.wallets.length?walTotal():avail,pct=s.income>0?Math.round(s.expense/s.income*100):0,pcol=pct<60?'#22c55e':pct<85?'#f59e0b':'#ef4444';
   const tip=getTip(Object.assign({},s,{bal:avail}),p,L,left,tithe);
   $('#s-home').innerHTML=`
   <div class="hi hero-hi"><div class="hg"><b>👋 ${n.getHours()<12?'صباح الخير':'أهلاً'}، ${S.name?U(S.name):'صديقي'}</b><small>نتمنى لك يوماً موفقاً</small></div><button class="bell" onclick="openBell()" aria-label="إشعارات">🔔<span class="bdg" id="bdg"></span></button></div>
@@ -1036,14 +1066,14 @@ function home(){
 
   <div class="sec" style="margin-top:4px">نظرة سريعة</div>
   <div class="grid3">
-   <div class="g st" data-ic="inc" data-glyph="↑"><small>إجمالي الدخل</small><b class="inc">${f(s.income)}</b></div>
-   <div class="g st" data-ic="exp" data-glyph="↓"><small>إجمالي المصروف</small><b class="exp">${f(s.expense)}</b></div>
-   <div class="g st" data-ic="loan" data-glyph="🤝"><small>سلف مستحقة</small><b class="loan">${f(outst)}</b></div></div>
+   <div class="g st" data-ic="inc" data-glyph="↑" onclick="openToday('income')" style="cursor:pointer"><small>إجمالي الدخل</small><b class="inc">${f(s.income)}</b></div>
+   <div class="g st" data-ic="exp" data-glyph="↓" onclick="openToday('expense')" style="cursor:pointer"><small>إجمالي المصروف</small><b class="exp">${f(s.expense)}</b></div>
+   <div class="g st" data-ic="loan" data-glyph="🤝" onclick="openToday('loans')" style="cursor:pointer"><small>سلف مستحقة</small><b class="loan">${f(outst)}</b></div></div>
   <button class="sv-row" onclick="openSave()"><span>🎯 الادخار</span><i class="sch">‹</i></button>
   <div class="grid2">
    <div class="g st" data-ic="days" data-glyph="📅"><small>الأيام المتبقية</small><b>${left} يوم</b></div>
-   <div class="g st" data-ic="avail" data-glyph="💵"><small>المتاح يوميًا تقريبًا</small><b>${f(Math.max(avail,0)/left)} ${CUR()}</b></div></div>
-  <div class="g st" style="text-align:start"><small>العشور / الزكاة المستحقة (${S.tithe}% من الدخل)</small><b style="color:#c4b5fd">${f(tithe)} ${CUR()}</b></div>
+   <div class="g st" data-ic="avail" data-glyph="💵"><small>المتاح يوميًا تقريبًا</small><b>${f(Math.max((S.wallets.length?s.bal+S.wallets.reduce((a,w)=>a+(w.open||0),0):s.bal)-debtOut-billsDue,0)/left)} ${CUR()}</b></div></div>
+  <div class="g st" style="text-align:start;cursor:pointer" onclick="openTithe()"><small>العشور / الزكاة المستحقة (${S.tithe}% من الدخل)</small><b style="color:#c4b5fd">${f(tithe)} ${CUR()}</b></div>
   ${weekCard()}${planCards(p,L,s)}${loansCard(p,OL,'loan')}${loansCard(p,DB,'debt')}
   <div class="g tip"><span style="font-size:24px">${tip[0]}</span><span>${tip[1]}</span></div>
   <div class="sec">آخر العمليات</div>
@@ -1084,6 +1114,7 @@ function addScr(){
     <label class="flab">التاريخ</label><div class="fcard frow"><span class="ficon2">📅</span><input id="a-date" type="date" value="${iso(new Date())}"></div>
     <label class="flab">${isP?'اسم الشخص':'ملاحظات (اختياري)'}</label><div class="fcard frow"><span class="ficon2">📝</span><input id="a-note" placeholder="${isP?'مثال: أحمد':'أضف ملاحظة هنا...'}"></div>
     ${isL?`<label class="flab">${add.type==='borrow'?'موعد السداد (اختياري)':'موعد الاسترداد (اختياري)'}</label><div class="fcard frow"><span class="ficon2">📅</span><input id="a-due" type="date"></div>`:''}
+    <label class="flab">${tr('صورة الإيصال (اختياري)')}</label><div class="fcard frow"><span class="ficon2">🧾</span><label class="fv" style="cursor:pointer;flex:1">${pendingPhoto?tr('اتصورت ✓'):tr('اضغط تصور أو تختار صورة')}<input type="file" accept="image/*" capture="environment" onchange="pickPhoto(this)" style="display:none"></label>${pendingPhoto?`<button class="btn s" style="width:auto;padding:6px 10px" onclick="clearPhoto()">${tr('مسح')}</button>`:''}</div>${pendingPhoto?`<img src="${pendingPhoto}" style="width:100%;border-radius:14px;margin-top:8px;max-height:200px;object-fit:cover">`:''}
     <button class="btn savebtn" onclick="saveTx()">حفظ</button>`;
   }
   $('#s-add').innerHTML=head+seg+body+quick;
@@ -1094,6 +1125,49 @@ function setSplit(v){const a=$('#a-amt')?$('#a-amt').value:'',n=$('#a-note')?$('
 function splitSum(){const t=[...document.querySelectorAll('.wsp')].reduce((a,i)=>a+(parseFloat(i.value)||0),0);const e=$('#a-amt');if(e)e.value=t>0?t:''}
 function setC(c,el){add.cat=c;if(el&&el.parentNode)el.parentNode.querySelectorAll('.cat').forEach(b=>b.classList.toggle('on',b===el))}
 function pickW(id,el){add.w=id;if(el&&el.parentNode)[...el.parentNode.children].forEach(c=>c.classList.toggle('on',c===el))}
+
+
+function openTithe(){
+  const L=inP(period(0));
+  const incs=L.filter(t=>t.type==='income');
+  const paid=L.filter(t=>t.type==='expense'&&(t.cat==='عشور'||t.cat==='زكاة'));
+  const paidSum=paid.reduce((a,t)=>a+t.amt,0);
+  const incSum=incs.reduce((a,t)=>a+t.amt,0);
+  const due=Math.max(0,incSum*S.tithe/100-paidSum);
+  const wOpts=S.wallets.map(w=>`<option value="${w.id}">${w.ico} ${wn(w)}</option>`).join('');
+  const incRows=incs.length?incs.map(t=>`<div class="ins"><span>${U(t.note||t.cat||'دخل')}<small> · ${t.date}</small></span><span><b>${f(t.amt)} ${CUR()}</b><button class="btn s" style="margin-inline-start:8px;padding:6px 10px" onclick="takeTitheBase(${t.amt},'عشور','${t.w||''}')">عشور ${f(t.amt*S.tithe/100)}</button></span></div>`).join(''):'<div class="empty">مفيش دخل مسجّل الشهر ده</div>';
+  const paidRows=paid.length?paid.map(t=>`<div class="ins"><span>${t.cat} <small> · ${t.date} · ${(S.wallets.find(w=>w.id===t.w)||{name:''}).name||''}</small></span><b>${f(t.amt)} ${CUR()}</b></div>`).join(''):'<div class="empty">لسه ماتخصمش حاجة الشهر ده</div>';
+  openPick('العشور والزكاة',`<div class="g"><div class="ins"><span>الدخل الشهر ده</span><b>${f(incSum)} ${CUR()}</b></div><div class="ins"><span>المستحق (${S.tithe}%)</span><b>${f(incSum*S.tithe/100)} ${CUR()}</b></div><div class="ins"><span>اتخصم</span><b>${f(paidSum)} ${CUR()}</b></div><div class="ins"><span>الباقي</span><b style="color:#c4b5fd">${f(due)} ${CUR()}</b></div></div>
+  <div class="g"><div class="sec" style="margin-top:0">خصم من مرتب</div>${incRows}</div>
+  <div class="g"><div class="sec" style="margin-top:0">خصم من مبلغ تحدده</div>
+  <input id="tt-base" type="number" inputmode="decimal" placeholder="المبلغ اللي هيتحسب عليه"><select id="tt-w" style="margin-top:8px">${wOpts}</select>
+  <div class="tabs" style="margin-top:8px"><button class="chip on" id="tt-k-a" onclick="ttKind('عشور')">عشور ${S.tithe}%</button><button class="chip" id="tt-k-z" onclick="ttKind('زكاة')">زكاة 2.5%</button></div>
+  <button class="btn" style="width:100%;margin-top:10px" onclick="takeTitheCustom()">خصم</button></div>
+  <div class="g"><div class="sec" style="margin-top:0">اتخصم الشهر ده</div>${paidRows}</div>`);
+}
+let ttK='عشور';
+function ttKind(k){ttK=k;document.querySelectorAll('#tt-k-a,#tt-k-z').forEach(b=>b.classList.remove('on'));(k==='عشور'?$('#tt-k-a'):$('#tt-k-z')).classList.add('on')}
+function takeTitheBase(base,kind,w){const rate=kind==='زكاة'?2.5:S.tithe;const a=+(base*rate/100).toFixed(2);if(!(a>0)){toast('المبلغ صفر');return}takeTithe(a,kind,w||(S.wallets[0]||{}).id)}
+function takeTitheCustom(){const base=parseFloat(($('#tt-base')||{}).value);if(!(base>0)){toast('اكتب المبلغ');return}const kind=ttK;const rate=kind==='زكاة'?2.5:S.tithe;takeTithe(+(base*rate/100).toFixed(2),kind,$('#tt-w').value)}
+function askTithe(amt,w){
+  if(!(S.tithe>0))return;
+  const t=amt*S.tithe/100,z=amt*2.5/100;
+  openPick(tr('العشور والزكاة'),`<div class="g"><p style="line-height:1.7">${tr('من الدخل ده، تحب نخصم العشور')} (${S.tithe}%) = <b>${f(t)} ${CUR()}</b>؟</p><button class="btn" style="width:100%;margin-top:8px" onclick="takeTithe(${t},'عشور','${w}')">${tr('خصم العشور')}</button><button class="btn s" style="width:100%;margin-top:8px" onclick="takeTithe(${z},'زكاة','${w}')">${tr('خصم الزكاة')} (2.5%) = ${f(z)} ${CUR()}</button><button class="btn s" style="width:100%;margin-top:8px" onclick="closeSheet()">${tr('لا')}</button></div>`);
+}
+function takeTithe(a,cat,w){S.tx.push({id:Date.now()+'',type:'expense',cat,amt:+(+a).toFixed(2),note:cat,date:iso(new Date()),t:Date.now(),w});save();closeSheet();go('home');toast(tr('تم الخصم'))}
+
+/* ---- receipt photos: stored in IndexedDB (not in the main data), compressed to ~150-300 KB ---- */
+let pendingPhoto=null;
+const PDB=new Promise((res,rej)=>{const r=indexedDB.open('mycash',1);r.onupgradeneeded=()=>r.result.createObjectStore('photos');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+async function photoPut(id,data){const db=await PDB;return new Promise((res,rej)=>{const tx=db.transaction('photos','readwrite');tx.objectStore('photos').put(data,id);tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error)})}
+async function photoGet(id){try{const db=await PDB;return new Promise(res=>{const q=db.transaction('photos').objectStore('photos').get(id);q.onsuccess=()=>res(q.result||null);q.onerror=()=>res(null)})}catch(e){return null}}
+async function photoDel(id){try{const db=await PDB;db.transaction('photos','readwrite').objectStore('photos').delete(id)}catch(e){}}
+function pickPhoto(inp){const f=inp.files&&inp.files[0];if(!f)return;const url=URL.createObjectURL(f);const img=new Image();
+  img.onload=()=>{const max=1280,r=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(img.width*r));c.height=Math.max(1,Math.round(img.height*r));c.getContext('2d').drawImage(img,0,0,c.width,c.height);pendingPhoto=c.toDataURL('image/jpeg',0.72);URL.revokeObjectURL(url);refreshAdd()};
+  img.onerror=()=>{URL.revokeObjectURL(url);toast('الصورة مش مقروءة')};img.src=url;inp.value=''}
+function clearPhoto(){pendingPhoto=null;refreshAdd()}
+async function loadThumbs(){document.querySelectorAll('img[data-ph]').forEach(async im=>{if(im.src)return;const d=await photoGet(im.dataset.ph);if(d)im.src=d})}
+async function viewPhoto(id){const d=await photoGet(id);if(!d){toast('الصورة مش موجودة');return}openPick(tr('الإيصال'),`<img src="${d}" style="width:100%;border-radius:14px">`)}
 function saveTx(){
   const isSplit=add.type==='income'&&add.split&&S.wallets.length>1;
   const parts=isSplit?[...document.querySelectorAll('.wsp')].map(i=>({w:i.dataset.w,a:parseFloat(i.value)||0})).filter(p=>p.a>0):null;
@@ -1102,9 +1176,10 @@ function saveTx(){
   if((ty==='loan'||ty==='borrow')&&!note){alert(tr('اكتب اسم الشخص'));return}
   const tx={id:Date.now()+'',type:ty,cat:add.cat,amt,note,date:$('#a-date').value||iso(new Date()),due:$('#a-due')?$('#a-due').value:'',t:Date.now()};
   if(ty==='transfer'){const a=$('#a-w1').value,b=$('#a-w2').value;if(a===b){alert(tr('اختار محفظتين مختلفتين'));return}tx.w=a;tx.w2=b;tx.cat=''}
-  else if(isSplit){parts.forEach((p,i)=>S.tx.push(Object.assign({},tx,{id:tx.id+'_'+i,amt:p.a,w:p.w})));S.lastW=parts[0].w;save();go('home');budgetCheck(ty,add.cat);return}
+  else if(isSplit){pendingPhoto=null;parts.forEach((p,i)=>S.tx.push(Object.assign({},tx,{id:tx.id+'_'+i,amt:p.a,w:p.w})));S.lastW=parts[0].w;save();go('home');budgetCheck(ty,add.cat);if(ty==='income')askTithe(amt,parts[0].w);return}
   else{tx.w=add.w||W0().id;S.lastW=tx.w}
-  S.tx.push(tx);save();go('home');budgetCheck(ty,add.cat);
+  if(pendingPhoto){tx.photo=tx.id;photoPut(tx.id,pendingPhoto).catch(()=>{});pendingPhoto=null}
+  S.tx.push(tx);save();go('home');budgetCheck(ty,add.cat);if(ty==='income')askTithe(amt,tx.w);
 }
 
 function logList(){
@@ -1165,8 +1240,8 @@ function rep(){
   <div class="mn"><button onclick="off--;rep()">${isRTL()?'›':'‹'}</button><b>${R.label}</b><button onclick="off++;rep()">${isRTL()?'‹':'›'}</button></div>
   <div class="g"><div class="dflex"><div class="donut" style="background:conic-gradient(${grad})"><div><span><b>${f(s.expense)}</b>${CUR()}</span></div></div><div class="dleg">${ent.length?ent.map(([c,v])=>`<div class="lg"><span><i style="background:${COL[c]||'#94a3b8'}"></i>${c}</span><b>${Math.round(v/s.expense*100)}%</b></div>`).join(''):'<div class="empty">لسه مفيش مصروفات</div>'}</div></div></div>
   <div class="g"><div class="sec" style="margin-top:0">${bt}</div>${dailyBars(R,L)}</div>
-  <div class="grid2"><div class="g st" data-ic="inc" data-glyph="↑"><small>إجمالي الدخل</small><b class="inc">${f(s.income)}</b></div><div class="g st" data-ic="exp" data-glyph="↓"><small>إجمالي المصروف</small><b class="exp">${f(s.expense)}</b></div></div>
-  <div class="grid2"><div class="g st" data-ic="loan" data-glyph="🤝"><small>صافي السلف</small><b class="loan">${f(s.loan-s.repay)}</b></div><div class="g st" data-ic="avail" data-glyph="💵"><small>المتبقي</small><b>${f(s.bal)}</b></div></div>
+  <div class="grid2"><div class="g st" data-ic="inc" data-glyph="↑" onclick="openToday('income')" style="cursor:pointer"><small>إجمالي الدخل</small><b class="inc">${f(s.income)}</b></div><div class="g st" data-ic="exp" data-glyph="↓" onclick="openToday('expense')" style="cursor:pointer"><small>إجمالي المصروف</small><b class="exp">${f(s.expense)}</b></div></div>
+  <div class="grid2"><div class="g st" data-ic="loan" data-glyph="🤝" onclick="openToday('loans')" style="cursor:pointer"><small>صافي السلف</small><b class="loan">${f(s.loan-s.repay)}</b></div><div class="g st" data-ic="avail" data-glyph="💵"><small>المتبقي</small><b>${f(s.bal)}</b></div></div>
   ${insightCard(L)}
   }`;
 }
@@ -1213,7 +1288,7 @@ function setScr(){
 function openSet(k){
   setSheetKey=k;
   const persHTML=`<div class="g"><label>اسمك</label><input id="n-name" value="${S.name}" placeholder="مثال: مينا"><label>يوم بداية الشهر (1 - 30)</label><input id="n-start" type="number" inputmode="numeric" min="1" max="30" value="${Math.max(1,Math.min(Number(S.startDay)||1,30))}"><label>نسبة العشور / الزكاة %</label><input id="n-t" type="number" inputmode="decimal" value="${S.tithe}"><div class="tabs" style="margin:8px 0 0"><button class="chip" onclick="$('#n-t').value=10">عشور 10%</button><button class="chip" onclick="$('#n-t').value=2.5">زكاة 2.5%</button></div><label>العملة</label><select id="n-cur">${(()=>{const L=[['','حسب البلد (تلقائي)'],['ج.م','جنيه مصري ج.م'],['ر.س','ريال سعودي ر.س'],['د.إ','درهم إماراتي د.إ'],['د.ك','دينار كويتي د.ك'],['ر.ق','ريال قطري ر.ق'],['د.ب','دينار بحريني د.ب'],['ر.ع','ريال عماني ر.ع'],['د.أ','دينار أردني د.أ'],['$','دولار $'],['€','يورو €'],['£','جنيه إسترليني £']];if(S.cur&&!L.some(x=>x[0]===S.cur))L.push([S.cur,S.cur]);return L.map(x=>`<option value="${x[0]}" ${x[0]===(S.cur||'')?'selected':''}>${x[1]}</option>`).join('')})()}</select><button class="btn" onclick="saveSet()">حفظ الإعدادات</button></div>
-  <div class="sgrp"><button class="srow" onclick="closeSet();go('plan')">${sIco('goal')}<span class="sl">الميزانيات والفواتير والأهداف</span><i class="sch">‹</i></button><button class="srow" onclick="closeSet();showOb()">${sIco('globe')}<span class="sl">البلد والعملة</span><i class="sch">‹</i></button><button class="srow" onclick="lockToggle()">${sIco('lock')}<span class="sl">${(S.lock||S.pin)?'إيقاف القفل':'تفعيل القفل (بصمة / وجه / قفل الشاشة)'}</span><i class="sch">‹</i></button><p style="font-size:12px;line-height:1.7;color:var(--mut);margin:8px 4px 0">القفل يضيف خطوة للتحقق من هويتك، لكنه لا يعني تشفير قاعدة البيانات تلقائيًا. التشفير الكامل يحتاج دمج تخزين آمن في نسخة Android.</p></div>
+  <div class="sgrp"><button class="srow" onclick="closeSet();go('plan')">${sIco('goal')}<span class="sl">الميزانيات والفواتير والأهداف</span><i class="sch">‹</i></button><button class="srow" onclick="closeSet();showOb()">${sIco('globe')}<span class="sl">البلد والعملة</span><i class="sch">‹</i></button><p style="font-size:12px;line-height:1.7;color:var(--mut);margin:8px 4px 0"></p></div>
   <button class="btn s" style="color:#fca5a5" onclick="if(confirm(tr('تمسح كل البيانات؟'))){S.tx=[];save();closeSet();go('home')}">مسح كل البيانات</button>`;
   const transHTML=`<div class="g"><textarea id="bk" rows="3" placeholder="هنا هتظهر بياناتك، أو الصق نسخة قديمة عشان ترجعها"></textarea><button class="btn s" onclick="bkOut()">📤 عرض ونسخ بياناتي</button><button class="btn s" onclick="bkIn()">📥 استرجاع من النص</button></div>
   <div class="sgrp"><button class="srow" onclick="closeSet();exportCSV()">${sIco('devices')}<span class="sl">تصدير إلى Excel (CSV)</span><i class="sch">‹</i></button></div>`;
@@ -1253,12 +1328,22 @@ function qsAdd(){
 }
 
 function updBadge(){const b=$('#bdg');if(!b)return;const now=new Date();const n=(typeof remItems==='function'?remItems():[]).filter(i=>i.at-now<=2*864e5&&i.at>=new Date(now.getTime()-864e5)).length;b.textContent=n;b.style.display=n?'block':'none'}
+
+function openToday(kind){
+  const today=iso(new Date());
+  const types=kind==='income'?['income']:kind==='expense'?['expense']:['loan','borrow','repay','payback'];
+  const title=kind==='income'?tr('إجمالي الدخل'):kind==='expense'?tr('إجمالي المصروف'):tr('إجمالي السلف');
+  const L=S.tx.filter(t=>t.date===today&&types.includes(t.type)).sort((a,b)=>b.t-a.t);
+  const rows=L.length?L.map(t=>`<div class="ins"><span>${U(t.note||t.cat||t.type)}<small> · ${(S.wallets.find(w=>w.id===t.w)||{name:''}).name||''}</small></span><b>${f(t.amt)} ${CUR()}</b></div>`).join(''):`<div class="empty">${tr('مفيش عمليات النهارده')}</div>`;
+  const tot=L.reduce((a,t)=>a+t.amt,0);
+  openPick(`${tr('النهارده')} · ${title}`,`<div class="g">${rows}</div>${L.length?`<div class="g"><div class="ins"><span>${tr('الإجمالي النهارده')}</span><b>${f(tot)} ${CUR()}</b></div></div>`:''}`);
+}
 function openBell(){
   let items=(typeof remItems==='function'?remItems():[]).slice().sort((a,b)=>a.at-b.at);
   let seenDaily=false;items=items.filter(i=>{if(i.k&&i.k.startsWith('daily')){if(seenDaily)return false;seenDaily=true}return true});
   const act=i=>i.k&&i.k.startsWith('bill')?['سجّل الدفع','add']:i.k&&i.k.startsWith('due')?['افتح الدين','log']:['افتح','add'];
   const emo=t=>{const m=t.match(/^(\p{Extended_Pictographic}\uFE0F?)\s*/u);return m?[m[1],t.slice(m[0].length)]:['🔔',t]};
-  const rows=items.length?items.slice(0,12).map(i=>{const [lab,dst]=act(i);const [ic,tx]=emo(i.title);return `<div class="g" style="padding:12px 14px;margin:8px 0"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">${ic}</span><div style="flex:1;min-width:0"><b>${tx}</b><small style="display:block;color:var(--mut)">${i.body||''}</small><small style="display:block;color:var(--mut)">${i.at.toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'short'})}</small></div></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="flex:1;padding:10px" onclick="closeSheet();go('${dst}')">${lab}</button><button class="btn s" style="flex:1" onclick="closeSheet()">لاحقاً</button></div></div>`}).join(''):'<div class="empty">مفيش إشعارات قادمة 🎉</div>';
+  const rows=items.length?items.slice(0,12).map(i=>{const [lab,dst]=act(i);const [ic,tx]=emo(i.title);return `<div class="g" style="padding:12px 14px;margin:8px 0"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">${ic}</span><div style="flex:1;min-width:0"><b>${tx}</b><small style="display:block;color:var(--mut)">${i.body||''}</small><small style="display:block;color:var(--mut)">${i.at.toLocaleDateString(S.lang==='en'?'en-US':'ar-EG',{weekday:'long',day:'numeric',month:'short'})}</small></div></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="flex:1;padding:10px" onclick="closeSheet();go('${dst}')">${lab}</button><button class="btn s" style="flex:1" onclick="closeSheet()">لاحقاً</button></div></div>`}).join(''):'<div class="empty">مفيش إشعارات قادمة 🎉</div>';
   openPick('الإشعارات',rows);
 }
 function closeSet(){setSheetKey=null;closeSheet()}
@@ -1293,7 +1378,7 @@ function openTransfer(){
   if(S.wallets.length<2){toast('لازم تكون عندك محفظتين على الأقل');return}
   const opts=S.wallets.map((w,i)=>`<option value="${w.id}" ${i===1?'selected':''}>${w.ico} ${wn(w)}</option>`).join('');
   const opts0=S.wallets.map((w,i)=>`<option value="${w.id}" ${i===0?'selected':''}>${w.ico} ${wn(w)}</option>`).join('');
-  openPick('تحويل بين المحافظ',`<div class="g"><label class="flab">من</label><select id="tr-from">${opts0}</select><label class="flab">إلى</label><select id="tr-to">${opts}</select><label class="flab">المبلغ</label><input id="tr-amt" type="number" inputmode="decimal" placeholder="0"><label class="flab">التاريخ</label><input id="tr-date" type="date" value="${iso(new Date())}"><button class="btn" style="margin-top:12px;width:100%" onclick="saveTransfer()">تحويل</button></div>`);
+  openPick('تحويل بين المحافظ',`<div class="g"><label class="flab">${S.lang==='en'?'From':'من'}</label><select id="tr-from">${opts0}</select><label class="flab">${S.lang==='en'?'To':'إلى'}</label><select id="tr-to">${opts}</select><label class="flab">المبلغ</label><input id="tr-amt" type="number" inputmode="decimal" placeholder="0"><label class="flab">التاريخ</label><input id="tr-date" type="date" value="${iso(new Date())}"><button class="btn" style="margin-top:12px;width:100%" onclick="saveTransfer()">تحويل</button></div>`);
 }
 function saveTransfer(){
   const a=$('#tr-from').value,b=$('#tr-to').value,amt=parseFloat($('#tr-amt').value);
@@ -1307,7 +1392,7 @@ const R={home,add:addScr,log,rep,set:setScr,plan:planScr,wal:walScr};let cur='ho
 function render(){R[cur]();if(cur==='home'){const e=$('#heroN');if(e)countUp(e,+e.dataset.v)}}
 function go(n){cur=n;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id==='s-'+n));
   document.querySelectorAll('.nav button[data-go]').forEach(b=>b.classList.toggle('on',b.dataset.go===n));
-  if(n==='add'){add={type:'expense',cat:'أكل',w:S.lastW,split:false}}if(n==='rep')off=0;const sc=$('#s-'+n);sc.classList.remove('enter');void sc.offsetWidth;sc.classList.add('enter');setTimeout(()=>sc.classList.remove('enter'),800);render();updBadge();window.scrollTo(0,0);moveDrop(true)}
+  if(n==='add'){add={type:'expense',cat:'أكل',w:S.lastW,split:false}}if(n==='rep')off=0;const sc=$('#s-'+n);sc.classList.remove('enter');void sc.offsetWidth;sc.classList.add('enter');setTimeout(()=>sc.classList.remove('enter'),800);render();updBadge();loadThumbs();window.scrollTo(0,0);moveDrop(true)}
 /* ===== v11: languages, wallet names, salary flow, monthly bills, biometric lock ===== */
 const LANGS={ar:['العربية','🇪🇬'],en:['English','🇬🇧'],fr:['Français','🇫🇷'],de:['Deutsch','🇩🇪'],it:['Italiano','🇮🇹'],zh:['中文','🇨🇳'],ja:['日本語','🇯🇵']};
 Object.assign(EN,{'اختر لغتك':'Choose your language','المرتب نزل؟':'Has your salary arrived?','✅ أيوه، نزل':'✅ Yes, it arrived','⏳ لسه':'⏳ Not yet','تخطي الشهر ده':'Skip this month','تمام، هسألك تاني بكرة':"OK, I'll ask again tomorrow",'المرتب ماشي معاك ازاي؟':'How is your salary split?','وزّع المرتب على كاش وفيزا ومحافظك':'Split it across cash, card and wallets','المبلغ اللي نزل':'Amount received','الموزّع':'Split','باقي':'Left','فوق المتوقع':'Above expected','سجّل المرتب':'Record salary','تم تسجيل المرتب ✅':'Salary recorded ✅','المرتب':'Salary','يوم نزول المرتب (1-31)':'Salary day (1-31)','مبلغ المرتب':'Salary amount','تذكير المرتب شغّال ✓':'Salary reminder on ✓','تفعيل تذكير المرتب':'Enable salary reminder','تم حفظ إعدادات المرتب':'Salary settings saved','اكتب يوم ومبلغ صح':'Enter a valid day and amount','فيزا':'Visa','محفظة':'Wallet','انستاباي':'InstaPay','فودافون كاش':'Vodafone Cash','فواتير الشهر دي':'Bills for this month','اضغط "دفعت" لما تسدّد الفاتورة':'Tap "Paid" once you pay a bill','دفعت ✓':'Paid ✓','لاحقًا':'Later','كل فواتير الشهر اتدفعت ✅':'All bills are paid ✅','اضغط على اقتراح عشان تضيفه':'Tap a suggestion to add it','رصيد الخط':'Phone credit','باك أب النت':'Backup internet','المياه':'Water','الغاز':'Gas','الكهرباء':'Electricity','افتح التطبيق وسجّله':'Open the app and record it','التطبيق مقفول':'App is locked','افتح':'Unlock','تأكيد هويتك':'Confirm your identity','إلغاء':'Cancel','التأكيد فشل، حاول تاني':'Verification failed, try again','القفل مش مدعوم على الجهاز ده':'Lock is not supported on this device','تفعيل القفل (بصمة / وجه / قفل الشاشة)':'Enable lock (fingerprint / face / screen lock)','تم إلغاء الرقم السري القديم، فعّل القفل الجديد':'Old PIN removed. Now enable the new lock','تم تفعيل القفل':'Lock enabled','تم إيقاف القفل':'Lock disabled','تحب تفعّل قفل التطبيق بالبصمة أو الوجه أو قفل شاشة الجهاز؟ تقدر تغيّر الاختيار من الإعدادات في أي وقت.':'Would you like to lock the app with fingerprint, face unlock, or your device screen lock? You can change this in Settings anytime.'});
@@ -1374,13 +1459,13 @@ function billPay(id){const b=S.bills.find(x=>x.id===id);if(!b)return;S.tx.push({
 function afterUnlock(n=0){clearTimeout(afterUnlock.h);afterUnlock.h=setTimeout(()=>{if(document.querySelector('#ob.on,#tour.on,#lock.on,#sheet.on')){if(n<40)afterUnlock(n+1);return}if(!salCheck())billsCheck()},n?3000:900)}
 /* ---- biometric / device-credential lock (replaces the old PIN) ---- */
 let lockedNow=false,authBusy=false;
-const bioNative=()=>{const P=window.Capacitor&&Capacitor.Plugins;return P?((P.BiometricAuth||P.BiometricAuthNative)?'ba':P.NativeBiometric?'nb':''):''};
+const bioNative=()=>{const P=window.Capacitor&&Capacitor.Plugins;return P?(P.BiometricAuth?'ba':P.NativeBiometric?'nb':''):''};
 const b64=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 const unb64=s=>Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));
 async function bioSupported(){if(bioNative())return true;try{return !!(window.PublicKeyCredential&&await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable())}catch(e){return false}}
 async function bioAuth(setup){authBusy=true;
   try{const P=window.Capacitor&&Capacitor.Plugins,n=bioNative(),why=tr('تأكيد هويتك');
-    if(n==='ba'){await (P.BiometricAuth||P.BiometricAuthNative).authenticate({reason:why,allowDeviceCredential:true,cancelTitle:tr('إلغاء'),androidTitle:why});return true}
+    if(n==='ba'){await P.BiometricAuth.authenticate({reason:why,allowDeviceCredential:true,cancelTitle:tr('إلغاء'),androidTitle:why});return true}
     if(n==='nb'){await P.NativeBiometric.verifyIdentity({reason:why,title:why,useFallback:true});return true}
     const ch=crypto.getRandomValues(new Uint8Array(32));
     if(setup||!S.cred){const c=await navigator.credentials.create({publicKey:{challenge:ch,rp:{name:APP_NAME},user:{id:crypto.getRandomValues(new Uint8Array(16)),name:'my-cash-tracker',displayName:APP_NAME},pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:'platform',userVerification:'required',residentKey:'discouraged'},timeout:60000}});S.cred=b64(c.rawId);save(false);return true}
@@ -1488,6 +1573,20 @@ function driveOnboardSkip(){S.drive.skip=true;save(false);$('#gP').style.display
     if(cur!=='home')go('home');
   },{passive:true});
 })();
+</script>
+<script>
+/* Lock screen removed by request: no PIN overlay, clear old PIN so the app never locks. */
+showLock=function(){};
+if(S.pin){S.pin="";try{save()}catch(e){}}
+</script>
+<script>
+/* Google Drive backup removed by request: local backup only. */
+driveOnboardShow=function(){};
+driveAuto=function(){};
+driveBackup=async function(){};
+driveRestore=async function(){};
+driveToggle=function(){};
+if(S.drive){S.drive.on=false;S.drive.skip=true}
 </script>
 </body>
 </html>
