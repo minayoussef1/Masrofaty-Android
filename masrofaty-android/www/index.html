@@ -1374,13 +1374,13 @@ function billPay(id){const b=S.bills.find(x=>x.id===id);if(!b)return;S.tx.push({
 function afterUnlock(n=0){clearTimeout(afterUnlock.h);afterUnlock.h=setTimeout(()=>{if(document.querySelector('#ob.on,#tour.on,#lock.on,#sheet.on')){if(n<40)afterUnlock(n+1);return}if(!salCheck())billsCheck()},n?3000:900)}
 /* ---- biometric / device-credential lock (replaces the old PIN) ---- */
 let lockedNow=false,authBusy=false;
-const bioNative=()=>{const P=window.Capacitor&&Capacitor.Plugins;return P?(P.BiometricAuth?'ba':P.NativeBiometric?'nb':''):''};
+const bioNative=()=>{const P=window.Capacitor&&Capacitor.Plugins;return P?((P.BiometricAuth||P.BiometricAuthNative)?'ba':P.NativeBiometric?'nb':''):''};
 const b64=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 const unb64=s=>Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));
 async function bioSupported(){if(bioNative())return true;try{return !!(window.PublicKeyCredential&&await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable())}catch(e){return false}}
 async function bioAuth(setup){authBusy=true;
   try{const P=window.Capacitor&&Capacitor.Plugins,n=bioNative(),why=tr('تأكيد هويتك');
-    if(n==='ba'){await P.BiometricAuth.authenticate({reason:why,allowDeviceCredential:true,cancelTitle:tr('إلغاء'),androidTitle:why});return true}
+    if(n==='ba'){await (P.BiometricAuth||P.BiometricAuthNative).authenticate({reason:why,allowDeviceCredential:true,cancelTitle:tr('إلغاء'),androidTitle:why});return true}
     if(n==='nb'){await P.NativeBiometric.verifyIdentity({reason:why,title:why,useFallback:true});return true}
     const ch=crypto.getRandomValues(new Uint8Array(32));
     if(setup||!S.cred){const c=await navigator.credentials.create({publicKey:{challenge:ch,rp:{name:APP_NAME},user:{id:crypto.getRandomValues(new Uint8Array(16)),name:'my-cash-tracker',displayName:APP_NAME},pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:'platform',userVerification:'required',residentKey:'discouraged'},timeout:60000}});S.cred=b64(c.rawId);save(false);return true}
