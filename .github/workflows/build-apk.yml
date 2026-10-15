@@ -28,7 +28,7 @@ jobs:
 
       - name: Install Capacitor and plugins
         working-directory: masrofaty-android
-        run: npm install --legacy-peer-deps @capacitor/core @capacitor/cli @capacitor/android @capacitor/app-launcher @capacitor/filesystem @capacitor/share @capacitor/app @capacitor/status-bar @codetrix-studio/capacitor-google-auth @aparajita/capacitor-biometric-auth @capacitor/local-notifications
+        run: npm install --legacy-peer-deps @capacitor/core @capacitor/cli @capacitor/android @capacitor/app-launcher @capacitor/filesystem @capacitor/share @capacitor/app @capacitor/status-bar @aparajita/capacitor-biometric-auth @capacitor/local-notifications
 
       - name: Check project files
         working-directory: masrofaty-android
